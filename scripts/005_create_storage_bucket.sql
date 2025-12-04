@@ -1,0 +1,26 @@
+-- Note: Storage bucket creation is typically done through Supabase UI or CLI
+-- This script documents the RLS policies needed for the 'book_covers' bucket
+
+-- RLS policies for the book_covers bucket (execute through Supabase Dashboard):
+-- 
+-- CREATE POLICY "Allow users to upload book covers"
+--   ON storage.objects FOR INSERT
+--   WITH CHECK (
+--     bucket_id = 'book_covers' AND
+--     auth.uid()::text = owner AND
+--     (STORAGE.foldername(name))[1] = auth.uid()::text
+--   );
+--
+-- CREATE POLICY "Allow users to view their book covers"
+--   ON storage.objects FOR SELECT
+--   USING (
+--     bucket_id = 'book_covers' AND
+--     auth.uid()::text = owner
+--   );
+--
+-- CREATE POLICY "Allow users to delete their book covers"
+--   ON storage.objects FOR DELETE
+--   USING (
+--     bucket_id = 'book_covers' AND
+--     auth.uid()::text = owner
+--   );
