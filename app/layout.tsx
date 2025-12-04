@@ -9,7 +9,6 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Biblioteca Pessoal - Sistema de Registro de Leituras",
   description: "Organize suas leituras e acompanhe seu progresso literário",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
